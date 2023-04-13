@@ -73,7 +73,7 @@ export function CurrenciesProvider({ children }: { children: ReactNode }) {
             }
         )
 
-        const responseData = await response.json() as CurrencyHistoryModule[]
+        const responseData = await response.json()
 
         if (responseData.code === 'CoinNotExists') {
             alert('Conversão não disponivel! Escolha outro par de moedas.')
@@ -91,7 +91,7 @@ export function CurrenciesProvider({ children }: { children: ReactNode }) {
         const valuesData = [] as number[]
         const labels = [] as string[]
 
-        responseData.forEach((historyModule) => {
+        (responseData as CurrencyHistoryModule[]).forEach((historyModule) => {
             const date = new Date(Number(historyModule.timestamp))
             console.log(date.getDate())
             labels.push(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear())
